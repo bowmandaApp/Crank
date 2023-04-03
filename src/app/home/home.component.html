@@ -52,6 +52,7 @@
 </div>
 
     <hr>
+    <div class="machine-space">
     <p *ngIf="showMachines" style="display: inline;">Copper Coils, $50!</p>
     <button [disabled]="money < 50" *ngIf="showMachines" (click)="addCoils()" style="display: block;">BUY A COIL!
         STRENGTHEN YOUR CRANK</button>
@@ -61,6 +62,7 @@
             <img [src]="coils" alt="Copper Coils" class="coils-display">
         </div>
     </div>
+</div>
 
 
 
