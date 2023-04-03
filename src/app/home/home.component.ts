@@ -32,10 +32,10 @@ export class HomeComponent {
   showMachines = false;
 
   crank_images = [
-    '/assets/crank.png',
-    '/assets/crank2.png',
-    '/assets/crank3.png',
-    '/assets/crank4.png'
+    '/src/assets/crank.png',
+    '/src/assets/crank2.png',
+    '/src/assets/crank3.png',
+    '/src/assets/crank4.png'
   ];
   currentIndex = 0;
 
@@ -48,8 +48,8 @@ export class HomeComponent {
   }
 
   flywheel_images = [
-    '/assets/flywheel1.png',
-    '/assets/flywheel.gif',
+    '/src/assets/flywheel1.png',
+    '/src/assets/flywheel.gif',
   ];
   currentFlyIndex = 0;
 
@@ -74,7 +74,10 @@ export class HomeComponent {
   stopLoop() {
     this.startFlywheel = false;
     this.currentFlyIndex = 0;
+    setInterval(() => {
+      
 
+    }, 0);
   }
   
   get currentFlyImage() {
@@ -105,7 +108,7 @@ export class HomeComponent {
         this.showTubeInfo = true;
       }
       for (let i = 0; i < this.tubes; i++) {
-        this.vacuum.push('/assets/vacuum_tube.png');
+        this.vacuum.push('/src/assets/vacuum_tube.png');
       }
     }
 
@@ -116,7 +119,7 @@ export class HomeComponent {
         this.showTransInfo = true;
       }
       for (let i = 0; i < this.transistor; i++) {
-        this.trans.push('/assets/transistor.png');
+        this.trans.push('/src/assets/transistor.png');
       }
     }
 
@@ -128,7 +131,7 @@ if (coils !== null) {
     this.showMachines = true;
   }
   for (let i = 0; i < this.copperCoils; i++) {
-    this.coils.push('/assets/coils.png');
+    this.coils.push('/src/assets/coils.png');
   }
 }
 
