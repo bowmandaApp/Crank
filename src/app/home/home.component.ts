@@ -32,10 +32,10 @@ export class HomeComponent {
   showMachines = false;
 
   crank_images = [
-    '../assets/crank.png',
-    '../assets/crank2.png',
-    '../assets/crank3.png',
-    '../assets/crank4.png'
+    '../src/assets/crank.png',
+    '../src/assets/crank2.png',
+    '../src/assets/crank3.png',
+    '../src/assets/crank4.png'
   ];
   currentIndex = 0;
 
@@ -48,8 +48,8 @@ export class HomeComponent {
   }
 
   flywheel_images = [
-    '../assets/flywheel1.png',
-    '../assets/flywheel.gif',
+    '../src/assets/flywheel1.png',
+    '../src/assets/flywheel.gif',
   ];
   currentFlyIndex = 0;
 
@@ -108,7 +108,7 @@ export class HomeComponent {
         this.showTubeInfo = true;
       }
       for (let i = 0; i < this.tubes; i++) {
-        this.vacuum.push('../assets/vacuum_tube.png');
+        this.vacuum.push('../src/assets/vacuum_tube.png');
       }
     }
 
@@ -119,7 +119,7 @@ export class HomeComponent {
         this.showTransInfo = true;
       }
       for (let i = 0; i < this.transistor; i++) {
-        this.trans.push('../assets/transistor.png');
+        this.trans.push('../src/assets/transistor.png');
       }
     }
 
@@ -131,7 +131,7 @@ if (coils !== null) {
     this.showMachines = true;
   }
   for (let i = 0; i < this.copperCoils; i++) {
-    this.coils.push('../assets/coils.png');
+    this.coils.push('../src/assets/coils.png');
   }
 }
 
@@ -229,20 +229,20 @@ if (coils !== null) {
 
   vacuumTubes() {
     this.tubes += this.energy;
-    this.vacuum.push('../assets/vacuum_tube.png');
+    this.vacuum.push('../src/assets/vacuum_tube.png');
     localStorage.setItem('tubes', this.tubes.toString());
   }
 
   transistors() {
     this.transistor += this.energy;
-    this.trans.push('../assets/transistor.png');
+    this.trans.push('../src/assets/transistor.png');
     localStorage.setItem('transistor', this.transistor.toString());
   }
 
   copperWireCoils() {
     this.copperCoils += this.energy;
     this.flywheel -= 5*this.copperCoils;
-    this.coils.push('../assets/coils.png');
+    this.coils.push('../src/assets/coils.png');
     localStorage.setItem('copperCoils', this.copperCoils.toString());
   }
 
@@ -261,7 +261,7 @@ if (coils !== null) {
   addTube() {
     if (this.energy >= 20 && this.money >= 5.00 && this.energy >= 40) {
       this.tubes++;
-      this.vacuum.push('../assets/vacuum_tube.png');
+      this.vacuum.push('../src/assets/vacuum_tube.png');
       this.energy -= 20;
       this.money -= 5.00;
       localStorage.setItem('tubes', this.tubes.toString());
@@ -275,7 +275,7 @@ if (coils !== null) {
   addTrans() {
     if (this.tubes > 9 && this.money >= 15.00 && this.energy >= 100) {
       this.transistor++;
-      this.trans.push('../assets/transistor.png');
+      this.trans.push('../src/assets/transistor.png');
       this.energy -= 100;
       this.tubes -= 10;
       this.money -= 15.00;
@@ -292,7 +292,7 @@ if (coils !== null) {
   addCoils() {
     if (this.money >= 50.00 && this.energy >= 250) {
       this.copperCoils++;
-      this.coils.push('../assets/coils.png');
+      this.coils.push('../src/assets/coils.png');
       this.energy -= 100;
       this.money -= 50.00;
 
