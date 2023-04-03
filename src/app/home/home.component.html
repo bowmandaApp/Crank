@@ -1,0 +1,71 @@
+
+<body>
+<div class="container">
+    <p>Times you've cranked: {{ score }}</p>
+    <p>Energy stored: {{ energy }}</p>
+    <p>Money collected: ${{ money.toFixed(2) }}</p>
+    <p *ngIf="showFlywheelInfo">Flywheel energy stored: {{ flywheel }}</p>
+    <p *ngIf="showFlywheelInfo">Flywheel Mk{{ flywheelUpgrade }}</p>
+</div>
+
+<button (click)="reset()" style="display: block;">Turn the machine on and off again.</button>
+<div class="energy-container">
+    <div class="crank-container">
+        <img [src]="currentImage" (click)="nextImage()" (click)="incrementClicks()" alt="Crank"
+            style="display: block; margin-top: 10px;" />
+        <img *ngIf="showFlywheelInfo && ownFlywheel" class="fly" [src]="currentFlyImage" alt="/assets/flywheel1.png">
+    </div>
+    <div class="interaction">
+        <button (click)="sellEnergy()" style="display: block;">Sell Electricity</button>
+        <button *ngIf="showFlywheelInfo && !ownFlywheel" [disabled]="money < 5" (click)="buyFlywheel()"
+            (click)="toggleLoop()">Purchase flywheel</button>
+        <button id="toggleFlywheel" class="fly" *ngIf="showFlywheelInfo && ownFlywheel  || lockFlywheel"
+            (click)="toggleLoop()">Start/Stop Flywheel</button>
+        <button class="fly" *ngIf="showFlywheelInfo && ownFlywheel || lockFlywheel" (click)="upgradeFlywheel()">Upgrade
+            Flywheel</button>
+    </div>
+
+
+    <hr>
+    <p *ngIf="showTubeInfo" style="display: inline;">Vacuum Tubes, $5!</p>
+    <button [disabled]="energy < 40" *ngIf="showTubeInfo" (click)="addTube()" style="display: block;">VACUUM TUBES: BUY
+        NOW!</button>
+    <p *ngIf="showTubeInfo">Vacuum Tubes owned: {{ tubes }}</p>
+    <div class="tube-container">
+        <div *ngFor="let vacuum of vacuum">
+            <img [src]="vacuum" alt="Vacuum Tube" class="tube-display">
+        </div>
+    </div>
+
+
+    <hr>
+    <p *ngIf="showTubeInfo" style="display: inline;">Transistors, $15!</p>
+    <button [disabled]="tubes < 10" *ngIf="showTransInfo" (click)="addTrans()" style="display: block;">BUY A TRANSISTOR!
+        10x
+        THE EFFICENCY</button>
+    <p *ngIf="showTransInfo">Transistors owned: {{ transistor }}</p>
+    <div class="trans-container">
+        <div *ngFor="let trans of trans">
+            <img [src]="trans" alt="Transistor" class="trans-display">
+        </div>
+    </div>
+</div>
+
+    <hr>
+    <p *ngIf="showMachines" style="display: inline;">Copper Coils, $50!</p>
+    <button [disabled]="money < 50" *ngIf="showMachines" (click)="addCoils()" style="display: block;">BUY A COIL!
+        STRENGTHEN YOUR CRANK</button>
+    <p *ngIf="showMachines">Coils owned: {{ copperCoils }}</p>
+    <div class="coils-container">
+        <div *ngFor="let coils of coils">
+            <img [src]="coils" alt="Copper Coils" class="coils-display">
+        </div>
+    </div>
+
+
+
+<iframe *ngIf="score == 4" width="1864" height="770" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+    title="Rick Astley - Never Gonna Give You Up (Official Music Video)" frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen></iframe>
+    </body>

@@ -1,0 +1,16 @@
+.top-container {
+    display: flex;
+    justify-content: left;
+  }
+  
+  img {
+    width: 50%;
+    height: 100px;
+    justify-content: left;
+  }
+
+  nav a {
+    margin-right: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }

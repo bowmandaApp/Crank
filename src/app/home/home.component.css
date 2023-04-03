@@ -1,0 +1,101 @@
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  img {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    border: 1px solid #ccc;
+  }
+
+  .fly {
+    width: 250px;
+    height: 250px;
+  }
+
+  .container {
+    background-color: #ccc;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+  }
+
+  .crank-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #aaa;
+  }
+
+  .button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .interactions {
+    display: inlinr-block;
+    margin-right: 10px;
+  }
+  
+  .fly {
+    max-width: 100%;
+    height: auto;
+  }
+  button {
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+
+  img {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    border: 1px solid #ccc;
+  }
+
+  .tube-container {
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+  .tube-display {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+  }
+
+  .trans-container {
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+  .trans-display {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+  }
+
+  .coils-container {
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+  .coils-display {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    display: flex;
+  }
+
