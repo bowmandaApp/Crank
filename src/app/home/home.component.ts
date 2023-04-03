@@ -229,20 +229,20 @@ if (coils !== null) {
 
   vacuumTubes() {
     this.tubes += this.energy;
-    this.vacuum.push('Crank/src/assets/vacuum_tube.png');
+    this.vacuum.push('/src/assets/vacuum_tube.png');
     localStorage.setItem('tubes', this.tubes.toString());
   }
 
   transistors() {
     this.transistor += this.energy;
-    this.trans.push('Crank/src/assets/transistor.png');
+    this.trans.push('/src/assets/transistor.png');
     localStorage.setItem('transistor', this.transistor.toString());
   }
 
   copperWireCoils() {
     this.copperCoils += this.energy;
     this.flywheel -= 5*this.copperCoils;
-    this.coils.push('Crank/src/assets/coils.png');
+    this.coils.push('/src/assets/coils.png');
     localStorage.setItem('copperCoils', this.copperCoils.toString());
   }
 
@@ -261,7 +261,7 @@ if (coils !== null) {
   addTube() {
     if (this.energy >= 20 && this.money >= 5.00 && this.energy >= 40) {
       this.tubes++;
-      this.vacuum.push('Crank/src/assets/vacuum_tube.png');
+      this.vacuum.push('/src/assets/vacuum_tube.png');
       this.energy -= 20;
       this.money -= 5.00;
       localStorage.setItem('tubes', this.tubes.toString());
@@ -275,7 +275,7 @@ if (coils !== null) {
   addTrans() {
     if (this.tubes > 9 && this.money >= 15.00 && this.energy >= 100) {
       this.transistor++;
-      this.trans.push('Crank/src/assets/transistor.png');
+      this.trans.push('/src/assets/transistor.png');
       this.energy -= 100;
       this.tubes -= 10;
       this.money -= 15.00;
@@ -292,7 +292,7 @@ if (coils !== null) {
   addCoils() {
     if (this.money >= 50.00 && this.energy >= 250) {
       this.copperCoils++;
-      this.coils.push('Crank/src/assets/coils.png');
+      this.coils.push('/src/assets/coils.png');
       this.energy -= 100;
       this.money -= 50.00;
 
