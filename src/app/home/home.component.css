@@ -8,38 +8,105 @@
     height: 150px;
     margin: 10px;
     border: 1px solid #ccc;
+    text-align: center;
   }
 
-  .fly {
-    width: 250px;
-    height: 250px;
+
+  .print {
+    width: 260px;
+    height: 100px;
   }
+
   .interactive {
-    background-color: #ccc;
+    background-color: #aaa;
     display: flex;
     padding: 0px;
   }
   
-  .information,
+  .transformer-container,
   .energy-container,
-  .money-container,
-  .flyWheel-container {
+  .printer-container,
+  .flywheel-container {
+    text-align: center;
     flex: 1;
     padding: 10px;
     background-color: #aaa;
     border: 1px solid #ccc;
   }
 
+  .transformer-container{
+    max-width: 180px;
+    flex: 1;
+    padding: 10px;
+    min-width: 140px;
+    border: 1px solid #ccc;
+    display: 50%;
+  }
 
+  .energy-container{
+    max-width: 200px;
+    flex: 1;
+    padding: 10px;
+    min-width: 140px;
+    border: 1px solid #ccc;
+    display: 50%;
+  }
+
+  .printer-container{
+    max-width: 450px;
+    flex: 1;
+    padding: 10px;
+    min-width: 140px;
+    border: 1px solid #ccc;
+    display: 50%;
+  }
+
+  .flywheel-container{
+    max-width: 80px;
+    flex: 1;
+    padding: 10px;
+    min-width: 140px;
+    border: 1px solid #ccc;
+    display: 50%;
+  }
+
+  .printer-container {
+    display: flex;
+    flex: 1;
+    padding: 10px;
+    min-width: 140px;
+    border: 1px solid #ccc;
+    display: 50%;
+  }
+
+  .printer-button,
+  .printer-info,
+  .transformer-buttons,
+  .flywheel-buttons {
+    flex: 1;
+    padding: 10px;
+    min-width: 140px;
+    border: 1px solid #ccc;
+    display: 50%;
+  }
+
+
+
+  .flyimg {
+    width: auto;
+    height: auto;
+  }
+  
   .interactions {
     display: inline-block;
     margin-right: 10px;
   }
 
 
-  .fly {
+  .print {
     max-width: 100%;
     height: auto;
+    padding-left: 10;
   }
   button {
     cursor: pointer;
