@@ -14,3 +14,23 @@
     padding: 10px;
     border: 1px solid #ccc;
   }
+
+  .scamazon-articles {
+    display: flex;
+  }
+  
+  .article1,
+  .article2 {
+    flex: 1;
+    padding: 20px;
+    border: 2px solid #ccc;
+    background-color: #fff;
+  }
+  h3{
+    text-decoration: underline;
+  }
+
+  .change {
+    border: 2px solid #ccc;
+    padding: 10px;
+  }

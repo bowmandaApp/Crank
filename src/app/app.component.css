@@ -2,6 +2,7 @@ nav a {
     margin-right: 20px;
     padding: 5px;
     border: 2px solid #ccc;
+    background-color: #fff;
   }
 
   .top{
@@ -13,3 +14,18 @@ nav a {
     background-image: url(../assets/wall.png);
     background-repeat: repeat;
   }
+
+  .banner {
+    background-color: #fc6868;
+    padding: 10px;
+    border: 1px solid #ff0000;
+    margin: 20px;
+    margin-left: auto + 20;
+  }
+
+  .bttn {
+    margin-right: auto + 20;
+    float: right;
+  }
+
+  

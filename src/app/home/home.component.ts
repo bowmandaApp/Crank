@@ -293,7 +293,7 @@ if (coils !== null) {
     if (this.money >= 50.00 && this.energy >= 250) {
       this.copperCoils++;
       this.coils.push('assets/coils.png');
-      this.energy -= 100;
+      this.energy -= 250;
       this.money -= 50.00;
 
       localStorage.setItem('copperCoils', this.copperCoils.toString());

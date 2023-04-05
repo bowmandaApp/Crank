@@ -4,9 +4,14 @@
 <nav>
     <a routerLink="/">Home</a>
     <a routerLink="/scamazon">Information</a>
+    <div class="banner" *ngIf="showBanner">
+        Welcome!Check out the NEW changelog for new updates! Dont forget to give it a FULL crank to get it running again!' <button class="bttn" (click)="closeBanner()">X</button>
+      </div>
 </nav>
+
 </div>
-<br>
+
+
 <header>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </header>
