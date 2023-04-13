@@ -7,57 +7,64 @@
 
             <div class="crank-container">
                 <img [src]="currentImage" (click)="nextImage()" (click)="incrementClicks()" alt="Crank"
-                    style="display: block; margin-top: 10px;" />
+                    style="display: block; width: 160px; height: 160px; " />
             </div>
             <p>Money collected: ${{ money.toFixed(2) }}</p>
             <button (click)="sellEnergy()" style="display: block;">Sell Electricity, $0.05 per Volt</button>
         </article>
         <article class="flyWheel-container">
             <button *ngIf="showFlywheelInfo && !ownFlywheel" [disabled]="money < 5" (click)="buyFlywheel()"
-            (click)="toggleLoop()">Purchase flywheel</button>
-            <div class="flywheel-buttons"  *ngIf="showFlywheelInfo && ownFlywheel">
+                (click)="toggleLoop()">Purchase flywheel</button>
+            <div class="flywheel-buttons" *ngIf="showFlywheelInfo && ownFlywheel">
                 <p>Flywheel Enabled: {{ loopEnabled }}</p>
                 <img *ngIf="showFlywheelInfo && ownFlywheel" class="flyimg" [src]="currentFlyImage"
                     alt="/assets/flywheel1.png">
-                    <p>The Flywheel Mk{{ flywheelUpgrade }}</p>
-                    <p>Will save {{5 * flywheelUpgrade}} Volts per Second</p>
-                    <p>Currently Holding {{ flywheel }} Volts</p>
+                <p>The Flywheel Mk{{ flywheelUpgrade }}</p>
+                <p>Will save {{5 * flywheelUpgrade}} Volts per Second</p>
+                <p>Currently Holding {{ flywheel }} Volts</p>
 
                 <button id="toggleFlywheel" class="fly" (click)="toggleLoop()">Start/Stop Flywheel</button>
-                <button class="fly" (click)="upgradeFlywheel()" [disabled]=" energy < 100 * flywheelUpgrade && money < 10 * flywheelUpgrade ">Upgrade Flywheel</button>
-                    <p> {{ 100 * flywheelUpgrade }} Volts &  ${{ 10 * flywheelUpgrade }} needed for next upgrade</p>
-                </div>
+                <button class="fly" (click)="upgradeFlywheel()"
+                    [disabled]=" energy < 100 * flywheelUpgrade && money < 10 * flywheelUpgrade ">Upgrade
+                    Flywheel</button>
+                <p> {{ 100 * flywheelUpgrade }} Volts & ${{ 10 * flywheelUpgrade }} needed for next upgrade</p>
+            </div>
         </article>
-        <article class="transformer-container" >
-            <button *ngIf="ownFlywheel && showTransformer && !ownTransformer" [disabled]="money < 30" (click)="buyTransformer()"
-            (click)="toggleTransformer()">Purchase Transformer</button>
+        <article class="transformer-container" *ngIf="showTransformer">
+            <button *ngIf="ownFlywheel && showTransformer && !ownTransformer" [disabled]="money < 30"
+                (click)="buyTransformer()" (click)="toggleTransformer()">Purchase Transformer</button>
             <div class="transformer-buttons" *ngIf=" ownFlywheel && ownTransformer && showTransformer">
-                <p >Transformer Enabled: {{ transformerEnabled }}</p>
-                <img  class="flyimg" src="/assets/transformer.png">
-                <p >The Transformer Mk{{ transformerUpgrade }} will sell {{ 2 * transformerUpgrade }} Volts a second when active</p>
+                <p>Transformer Enabled: {{ transformerEnabled }}</p>
+                <img class="flyimg" src="assets/transformer.png">
+                <p>The Transformer Mk{{ transformerUpgrade }} will sell {{ 2 * transformerUpgrade }} Volts a second when
+                    active</p>
 
                 <button id="toggleFlywheel" class="fly" (click)="toggleTransformer()">Start/Stop Transformer</button>
-                <button class="fly" (click)="upgradeTransformer()" [disabled]=" energy < 100 * transformerUpgrade && money < 25 * transformerUpgrade ">Upgrade Transformer</button>
-                    <p> {{ 100 * transformerUpgrade }} Volts &  ${{ 25 * transformerUpgrade }} needed for next upgrade</p>
+                <button class="fly" (click)="upgradeTransformer()"
+                    [disabled]=" energy < 100 * transformerUpgrade && money < 25 * transformerUpgrade ">Upgrade
+                    Transformer</button>
+                <p> {{ 100 * transformerUpgrade }} Volts & ${{ 25 * transformerUpgrade }} needed for next upgrade</p>
             </div>
 
         </article>
-        <article class="printer-container" >
-            <button class="printer-buttons" *ngIf="showPrinterInfo && !ownPrinter" [disabled]="money < 5" (click)="buyPrinter()">Purchase Printing Press</button>
+        <article class="printer-container">
+            <button class="printer-buttons" *ngIf="showPrinterInfo && !ownPrinter" [disabled]="money < 5"
+                (click)="buyPrinter()">Purchase Printing Press</button>
             <div class="printer-buttons" *ngIf="showPrinterInfo && ownPrinter">
-                <img  class="print" src="/assets/printingpress.png">
+                <img class="print" src="assets/printingpress.png">
 
-                    <p >Printing Press Mk{{ printerUpgrade }}</p>
+                <p>Printing Press Mk{{ printerUpgrade }}</p>
                 <button id="togglePrinter" class="print" *ngIf="showPrinterInfo && ownPrinter"
                     (click)="togglePrinter()">Start/Stop Printing Press</button>
-                <button class="print" [disabled]="money < 500"
-                    (click)="upgradePrinter()" [disabled]=" energy < 1000 * printerUpgrade && money < 500 * printerUpgrade ">Upgrade Printing Press</button>
-                    <p> {{ 1000 * printerUpgrade }} Volts &  ${{ 500 * printerUpgrade }} needed for next upgrade</p>
-                    <p>Buy Printer Supplies</p>
-                <button class="print" [disabled]="money < 19.99"
-                    (click)="buyPaper()">Buy Paper Ream</button>
-                <button class="print" [disabled]="money < 29.99"
-                    (click)="buyInk()">Buy Ink</button>
+                <button class="print" [disabled]="money < 500" (click)="upgradePrinter()"
+                    [disabled]=" energy < 1000 * printerUpgrade && money < 500 * printerUpgrade ">Upgrade Printing
+                    Press</button>
+                <p> {{ 1000 * printerUpgrade }} Volts & ${{ 500 * printerUpgrade }} needed for next upgrade</p>
+                <p>Buy Printer Supplies</p>
+                <button class="print" [disabled]="money < 19.99" (click)="buyPaper()">Buy Paper Ream</button>
+                <button class="print" [disabled]="money < 29.99" (click)="buyInk()">Buy Ink</button>
+                <p *ngIf="ownTelegraph">Request supplies (autobuy): {{printerBuyEnabled}}</p>
+                <button *ngIf="ownTelegraph" class="print" [disabled]="money < 29.99 || money < 19.99" (click)="togglePrinterBuying()">Send Telegram</button>
             </div>
             <div class="printer-info" *ngIf="showPrinterInfo && ownPrinter">
                 <p>Printer Enabled: {{ printerEnabled }}</p>
@@ -67,14 +74,23 @@
                 <p>Profit ledger: ${{ printerProfit.toFixed(2) }} earned</p>
             </div>
         </article>
+        <article class="communication-container">
+        <div class="telegraph" >
+            <h5>COMMUNICATIONS</h5>
+            <button [disabled]="money < 7000" *ngIf="!ownTelegraph" (click)="buyTelegraph()" style="display: block;">Buy Telegraph</button>
+            <img src="assets/telegraph.png" *ngIf="ownTelegraph"/>
+            <button [disabled]="money < 15000" *ngIf="!ownTeslaTower" (click)="buyRadio()" style="display: block;">Buy Tesla Tower</button>
+            <img src="assets/teslatower.png" *ngIf="ownTeslaTower"/>
+        </div>
+        </article>
 
-        
     </div>
 
     <hr>
+    <div class="machine-space">
     <div class="item">
         <p *ngIf="showTubeInfo" style="display: inline;">Vacuum Tubes, $5! Installation requires 20 volts</p>
-        <button [disabled]="energy < 40" *ngIf="showTubeInfo" (click)="addTube()" style="display: block;">VACUUM
+        <button [disabled]="energy < 20" *ngIf="showTubeInfo" (click)="addTube()" style="display: block;">VACUUM
             TUBES: BUY
             NOW!</button>
         <p *ngIf="showTubeInfo">Vacuum Tubes owned: {{ tubes }}</p>
@@ -90,9 +106,7 @@
         <p *ngIf="showTubeInfo" style="display: inline;">Transistors, $15! Installation requires 100 volts and the
             removal of 10 Vacuum Tubes.</p>
         <button [disabled]="tubes < 10" *ngIf="showTransInfo" (click)="addTrans()" style="display: block;">BUY A
-            TRANSISTOR!
-            10x
-            THE EFFICENCY</button>
+            TRANSISTOR! 12x THE EFFICENCY</button>
         <p *ngIf="showTransInfo">Transistors owned: {{ transistor }}</p>
         <div class="trans-container">
             <div *ngFor="let trans of trans">
@@ -100,15 +114,14 @@
             </div>
         </div>
     </div>
-
+</div>
 
     <hr>
     <div class="machine-space">
         <div class="item">
             <p *ngIf="showMachines" style="display: inline;">Copper Coils, $50! Installation requires 250 volts</p>
             <button [disabled]="money < 50" *ngIf="showMachines" (click)="addCoils()" style="display: block;">BUY A
-                COIL!
-                STRENGTHEN YOUR CRANK</button>
+                COIL! STRENGTHEN YOUR CRANK</button>
             <p *ngIf="showMachines">Coils owned: {{ copperCoils }}</p>
             <div class="coils-container">
                 <div *ngFor="let coils of coils">
@@ -116,9 +129,71 @@
                 </div>
             </div>
         </div>
+        <hr>
+        <div class="item">
+            <p *ngIf="showMachines" style="display: inline;">Babbage Engines, $100! Installation requires 400 volts</p>
+            <button [disabled]="money < 100" *ngIf="showMachines" (click)="addEngines()" style="display: block;">BUY A
+                BABBAGE ENGINE! CALCULATE THAT CRANKIN'</button>
+            <p *ngIf="showMachines">Engines owned: {{ babbageEngines }}</p>
+            <div class="engines-container">
+                <div *ngFor="let babbages of babbages">
+                    <img [src]="babbages" alt="Babbage Engines" class="engines-display">
+                </div>
+            </div>
+        </div>
     </div>
 
+    <hr>
+    <div class="tech-space">
+        <div class="logistics-space" *ngIf="showLogistics">
+            <div class="logistics-container">
+                <p *ngIf="showLogistics && ownTrain" style="display: inline;">Cargo Cars, $500</p>
+                <p *ngIf="!ownTrain" style="display: inline;">$800 for an old steam engine and its flatcar</p>
+                <button style="display: inline;" [disabled]="money < 800" *ngIf="!ownTrain" (click)="buyTrain()"
+                    style="display: block;">BUY A TRAIN!</button>
+                <button style="display: inline;" [disabled]="money < 500" *ngIf="ownTrain" (click)="addCargoCars()"
+                    style="display: block;">BUY A NEW CAR FOR YOUR TRAIN!</button>
+                <button style="display: inline;" [disabled]="money < 50" *ngIf="ownTrain" (click)="buyCoal()"
+                    style="display: block;">Buy a ton of coal </button>
+                <button style="display: inline;" [disabled]="money < 50" *ngIf="ownTrain" (click)="buyWater()"
+                    style="display: block;">Buy gallons of water</button>
+                <button style="display: inline;" [disabled]="money < 50" *ngIf="ownTrain && !hiredConductor" (click)="hireConductor()"
+                    style="display: block;">Have Conductor Clock-in</button>
+                    <p *ngIf="ownTrain && !hiredConductor && ownTelegraph">(automate train resources) WARNING: you will continue to pay him once hired until page refresh.</p>
+                    <p *ngIf="ownTrain && hiredConductor  && ownTelegraph">Train Resource Delivery: {{startBuyingConductorStuff}}</p>
+                    <button style="display: inline;"  *ngIf="ownTrain && hiredConductor  && ownTelegraph" (click)="toggleConductorBuying()"
+                    style="display: block;">Start/Stop Delivery</button>
+            </div>
+            <div class="train-controls" *ngIf="ownTrain">
+                <button class="sendoffbutton"  [disabled]="trainTraveling || coal <= 0 || water <= 0" *ngIf="ownTrain"
+                    (click)="toggleTrainLoop()" style="display: block;">Start Train Transit!</button>
+                <input *ngIf="ownTrain" [disabled]="lockControls" class="slider" id="myRange"type="range" min="0"
+                    max="4" step="1" [(ngModel)]="speed" style="display: inline;">
+                <p  style="display: inline;" *ngIf="trainTraveling">{{ speed }}</p>
+                <p>[||]-[>]-[>>]-[>>>]</p>
+                <p>Train Speed Control</p>
+                <p>(Scroll the box right to see the engine!)</p>
+            </div>   
+            <div class="train-status">         
+                <p *ngIf="ownTrain">[Train Status]</p>
+                <p *ngIf="ownTrain">Tons of Coal: {{ coal }}</p>
+                <p *ngIf="ownTrain">Gallons of Water: {{ water }}</p>
+                <p *ngIf="ownTrain">{{ miles }} miles left to travel</p>
+            </div>
+                <div class="train-container" id="train-container">
 
+                <div class="train" *ngFor="let cargoc of cargoc">
+                    <img class="train" [src]="cargoc" *ngIf="ownTrain" alt="Cargo car" class="train-cargo-display">
+                </div>
+                <img class="train" *ngIf="ownTrain" [src]="currentTrainImage" alt="assets/trainengine.png" />
+            </div>
+        </div>
+        <div class="other-space">
+            <div class="computer" *ngIf="!showComputing">
+            <app-computing-machine></app-computing-machine>
+            </div>
+        </div>
+    </div>
 
     <iframe *ngIf="score == 4" width="1864" height="770" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
         title="Rick Astley - Never Gonna Give You Up (Official Music Video)" frameborder="0"

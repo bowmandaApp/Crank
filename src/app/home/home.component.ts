@@ -26,10 +26,13 @@ export class HomeComponent {
   money = 0.00;
   printerProfit = 0.00;
   copperCoils = 0;
+  babbageEngines = 0;
   tubeVal: number[] = [];
   vacuum: string[] = [];
   trans: string[] = [];
   coils: string[] = [];
+  babbages: string[] = [];
+  cargoc: string[] = [];
   showTubeInfo = false;
   showTransInfo = true;
   showFlywheelInfo = false;
@@ -43,6 +46,19 @@ export class HomeComponent {
   ownTransformer = false;
   startTransforming = false;
   showTransformer = false;
+  showLogistics = false;
+  cargoCars = 0;
+  ownTrain = false;
+  trainTraveling = false;
+  miles = 0;
+  coal = 0;
+  water = 0;
+  showTelegraph = false;
+  ownTelegraph = false;
+  showTeslaTower = false;
+  ownTeslaTower = false;
+  showComputing = false;
+  hiredConductor = false;
 
 
   crank_images = [
@@ -149,6 +165,25 @@ export class HomeComponent {
       }
     }
 
+    const babbageEngines = localStorage.getItem('babbageEngines');
+    if (babbageEngines !== null) {
+      this.babbageEngines = parseInt(babbageEngines, 10);
+      if (this.babbageEngines > 0) {
+        this.showMachines = true;
+      }
+      for (let i = 0; i < this.babbageEngines; i++) {
+        this.babbages.push('assets/babbageengine.png');
+      }
+    }
+
+    const cargoCars = localStorage.getItem('cargoCars');
+    if (cargoCars !== null) {
+      this.cargoCars = parseInt(cargoCars, 10);
+      for (let i = 0; i < this.cargoCars; i++) {
+        this.cargoc.push('assets/fullcargo.png');
+      }
+    }
+
 
     const ownFlywheel = localStorage.getItem('ownFlywheel');
     if (ownFlywheel !== null) {
@@ -183,14 +218,54 @@ export class HomeComponent {
       this.paper = JSON.parse(paper);
     }
 
+    const hiredConductor = localStorage.getItem('hiredConductor');
+    if (hiredConductor !== null) {
+      this.hiredConductor = JSON.parse(hiredConductor);
+    }
+
+    const showComputing = localStorage.getItem('showComputing');
+    if (showComputing !== null) {
+      this.showComputing = JSON.parse(showComputing);
+    }
+
+    const ownTelegraph = localStorage.getItem('ownTelegraph');
+    if (ownTelegraph !== null) {
+      this.ownTelegraph = JSON.parse(ownTelegraph);
+    }
+
+    const ownTeslaTower = localStorage.getItem('ownTeslaTower');
+    if (ownTeslaTower !== null) {
+      this.ownTeslaTower = JSON.parse(ownTeslaTower);
+    }
+
     const ink = localStorage.getItem('ink');
     if (ink !== null) {
       this.ink = JSON.parse(ink);
     }
 
+    const coal = localStorage.getItem('coal');
+    if (coal !== null) {
+      this.coal = JSON.parse(coal);
+    }
+
+    const water = localStorage.getItem('water');
+    if (water !== null) {
+      this.water = JSON.parse(water);
+    }
+
+    const miles = localStorage.getItem('miles');
+    if (miles !== null) {
+      this.miles = JSON.parse(miles);
+    }
+
     const ownTransformer = localStorage.getItem('ownTransformer');
     if (ownTransformer !== null) {
       this.ownTransformer = JSON.parse(ownTransformer);
+    }
+
+    const ownTrain = localStorage.getItem('ownTrain');
+    if (ownTrain !== null) {
+      this.ownTrain = JSON.parse(ownTrain);
     }
 
     const transformerUpgrade = localStorage.getItem('transformerUpgrade');
@@ -208,6 +283,26 @@ export class HomeComponent {
       this.printerProfit = JSON.parse(printerProfit);
     }
 
+    const showMachines = localStorage.getItem('showMachines');
+    if (showMachines !== null) {
+      this.showMachines = JSON.parse(showMachines);
+    }
+
+    const showTubeInfo = localStorage.getItem('showTubeInfo');
+    if (showTubeInfo !== null) {
+      this.showTubeInfo = JSON.parse(showTubeInfo);
+    }
+
+    const showPrinterInfo = localStorage.getItem('showPrinterInfo');
+    if (showPrinterInfo !== null) {
+      this.showPrinterInfo = JSON.parse(showPrinterInfo);
+    }
+
+    const showLogistics = localStorage.getItem('showLogistics');
+    if (showLogistics !== null) {
+      this.showLogistics = JSON.parse(showLogistics);
+    }
+
     setInterval(() => {
 
       for (let i = 0; i < this.tubes; i++) {
@@ -221,8 +316,15 @@ export class HomeComponent {
       if (this.ownPrinter == true && this.pamphlets > 0) {
         this.sellPamphlets();
       }
+
+      if (this.hiredConductor == true) {
+        this.money -= 1.50;
+      }
       localStorage.setItem('energy', this.energy.toString());
+      localStorage.setItem('money', this.money.toString());
     }, 1000);
+
+
   }
 
   incrementClicks() {
@@ -235,6 +337,8 @@ export class HomeComponent {
       this.clicks = 0;
     }
   }
+
+
 
   reset() {
     this.score = 0;
@@ -274,9 +378,19 @@ export class HomeComponent {
     localStorage.removeItem('printerUpgrade');
     localStorage.removeItem('printerProfit');
     this.ownTransformer = false;
-    this.transformerEnabled= false;
+    this.transformerEnabled = false;
     this.transformerUpgrade = 1;
     localStorage.removeItem('transformerUpgrade');
+    this.showLogistics = false;
+    localStorage.removeItem('cargoc');
+    this.ownTrain = false;
+    this.cargoCars = 0;
+    this.water = 0;
+    this.coal = 0;
+    this.miles = 0;
+    this.hiredConductor = false;
+    this.ownTelegraph = false;
+    this.ownTeslaTower = false;
   }
 
   incrementScore() {
@@ -296,16 +410,32 @@ export class HomeComponent {
     if (this.score >= 100) {
       this.showFlywheelInfo = true;
     }
-    if (this.flywheel >= 500) {
+    if (this.score >= 200) {
       this.showTransformer = true;
     }
-    if (this.score >= 200 && this.flywheel >= 250) {
+    if (this.score >= 500) {
       this.showMachines = true;
     }
 
-    if (this.score >= 700 && this.flywheel >= 1000) {
+    if (this.score >= 700) {
       this.showPrinterInfo = true;
     }
+
+    if (this.score >= 1000) {
+      this.showLogistics = true;
+    }
+    if (this.score >= 2000) {
+      this.showTelegraph = true;
+    }
+
+    if (this.score >= 4000 && this.showTelegraph) {
+      this.showTeslaTower = true;
+    }
+
+    if (this.score >= 8000 && this.showTeslaTower) {
+      this.showComputing = true;
+    }
+
     localStorage.setItem('score', this.score.toString());
   }
 
@@ -327,6 +457,19 @@ export class HomeComponent {
     this.coils.push('assets/coils.png');
     localStorage.setItem('copperCoils', this.copperCoils.toString());
   }
+  be = 0;
+  babbageEngineCalculations() {
+    this.be = this.babbageEngines * 1.5;
+    this.be += this.energy;
+    this.flywheel -= 15 * this.babbageEngines;
+    this.coils.push('assets/babbageengine.png');
+    localStorage.setItem('babbageEngines', this.babbageEngines.toString());
+  }
+
+  cargoBoxCars() {
+    this.coils.push('assets/fullcargo.png');
+    localStorage.setItem('cargoCars', this.cargoCars.toString());
+  }
 
   energyCount() {
     if (this.copperCoils > 0) {
@@ -341,7 +484,7 @@ export class HomeComponent {
   }
 
   addTube() {
-    if (this.energy >= 20 && this.money >= 5.00 && this.energy >= 40) {
+    if (this.energy >= 20 && this.money >= 5.00) {
       this.tubes++;
       this.vacuum.push('assets/vacuum_tube.png');
       this.energy -= 20;
@@ -383,6 +526,27 @@ export class HomeComponent {
     }
   }
 
+  addEngines() {
+    if (this.money >= 100.00 && this.energy >= 400) {
+      this.babbageEngines++;
+      this.babbages.push('assets/babbageengine.png');
+      this.energy -= 400;
+      this.money -= 100.00;
+      localStorage.setItem('babbageEngines', this.babbageEngines.toString());
+    }
+  }
+
+  addCargoCars() {
+    if (this.money >= 500.00) {
+      this.cargoCars++;
+      this.cargoc.push('assets/fullcargo.png');
+      this.money -= 500;
+
+      localStorage.setItem('cargoCars', this.cargoCars.toString());
+
+    }
+  }
+
   sellEnergy() {
     this.money += this.energy * 0.05;
     this.energy = 0;
@@ -393,6 +557,7 @@ export class HomeComponent {
     this.money -= 5;
     this.ownFlywheel = true;
     localStorage.setItem('ownFlywheel', 'true');
+    localStorage.setItem('showFlywheel', 'true');
   }
 
   upgradeFlywheel() {
@@ -416,10 +581,11 @@ export class HomeComponent {
   }
 
   buyPrinter() {
-    if(this.money > 500){
-    this.money -= 500;
-    this.ownPrinter = true;
-    localStorage.setItem('ownPrinter', 'true');
+    if (this.money > 250) {
+      this.money -= 250;
+      this.ownPrinter = true;
+      localStorage.setItem('ownPrinter', 'true');
+      localStorage.setItem('showPrinter', 'true');
     }
   }
 
@@ -462,8 +628,11 @@ export class HomeComponent {
 
   startPrinter() {
     setInterval(() => {
-      this.runPrinter();
-      this.flywheel -= 500;
+      if (this.flywheel >= 500) {
+        this.runPrinter();
+
+        this.flywheel -= 500;
+      }
     }, 5000);
 
   }
@@ -489,12 +658,44 @@ export class HomeComponent {
     }
   }
 
+  printerBuyEnabled = false;
+  startBuyingPrintStuff = false;
+  togglePrinterBuying() {
+    this.printerBuyEnabled = !this.printerBuyEnabled;
+    this.startBuyingPrintStuff = true;
+    if (this.printerBuyEnabled) {
+      this.startPrinterBuying();
+    } else {
+      this.stopPrinterBuying();
+    }
+  }
+  buyPrinterStuff: any;
+  startPrinterBuying() {
+    this.buyPrinterStuff = setInterval(() => {
+      if (this.money > 29.99 || this.money > 19.99) {
+        if (this.ink <= 0) {
+          this.buyInk();
+        }
+        if (this.paper <= 0) {
+          this.buyPaper();
+        }
+      }
+    }, 1000);
+
+  }
+  stopPrinterBuying() {
+    this.startPrinting = false;
+    clearInterval(this.buyPrinterStuff);
+  }
+
   sellPamphlets() {
     this.pamphlets -= 1;
     this.money += 0.50;
-    this.printerProfit += 0.50; 
+    this.printerProfit += 0.50;
     localStorage.setItem('printerProfit', this.printerProfit.toString());
     localStorage.setItem('pamphlets', this.pamphlets.toString());
+    localStorage.setItem('ink', this.ink.toString());
+    localStorage.setItem('paper', this.paper.toString());
   }
 
   transformerEnabled: boolean = false;
@@ -516,17 +717,30 @@ export class HomeComponent {
 
   }
   stopTransformer() {
-    this.startTransforming= false;
+    this.startTransforming = false;
     setInterval(() => {
     }, 0);
 
   }
 
   buyTransformer() {
-    if (this.money > 30){
-    this.money -= 30;
-    this.ownTransformer = true;
-    localStorage.setItem('ownTransformer', 'true');
+    if (this.money > 30) {
+      this.money -= 30;
+      this.ownTransformer = true;
+      this.showTransformer = true;
+      localStorage.setItem('ownTransformer', 'true');
+      localStorage.setItem('showTransformer', 'true');
+    }
+  }
+
+  buyTrain() {
+    if (this.money > 800) {
+      this.money -= 800;
+      this.cargoCars++;
+      this.ownTrain = true;
+      localStorage.setItem('ownTrain', 'true');
+      localStorage.setItem('showLogistics', 'true');
+      localStorage.setItem('cargoc', this.cargoc.toString());
     }
   }
 
@@ -546,11 +760,177 @@ export class HomeComponent {
       this.score++;
       this.flywheel -= 2 * this.transformerUpgrade;
       this.transformer += 2 * this.transformerUpgrade;
-      this.money += 2 * this.transformerUpgrade;
+      this.money += 0.10 * this.transformerUpgrade;
       localStorage.setItem('flywheel', this.flywheel.toString());
       localStorage.setItem('transformer', this.transformer.toString());
       localStorage.setItem('money', this.money.toString());
     }
   }
-}
 
+  min = 1000;
+  max = 10000;
+  randomTrackLength = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min;
+
+
+  buyCoal() {
+    if (this.money > 19.99) {
+      this.coal += 775;
+      this.money -= 19.99;
+      localStorage.setItem('coal', this.coal.toString());
+    }
+  }
+  buyWater() {
+    if (this.money > 49.99) {
+      this.money -= 49.99;
+      this.water += 1000;
+      localStorage.setItem('water', this.water.toString());
+    }
+  }
+
+  train_images = [
+    'assets/trainengine.png',
+    'assets/trainengine.gif',
+  ];
+  currentTrainIndex = 0;
+
+  speed: number = 0;
+
+  loopTrainEnabled: boolean = false;
+  milesSet: boolean = false
+  lockControls: boolean = true;
+  trainLoop: any;
+  incomeChance: number = 0.00;
+  incomeDist: number = 0;
+
+
+  toggleTrainLoop() {
+    if (this.loopTrainEnabled == true) {
+      this.lockControls = true;
+    } else {
+      this.lockControls = false;
+    }
+    if (!this.milesSet) {
+      this.miles = this.randomTrackLength;
+      this.incomeDist = this.miles;
+      this.milesSet = true;
+    }
+    this.loopTrainEnabled = !this.loopTrainEnabled;
+    this.trainTraveling = true;
+    if (this.loopTrainEnabled) {
+      this.startTrainLoop();
+    } else {
+      this.stopTrainLoop();
+    }
+  }
+
+  startTrainLoop() {
+    if (this.miles > 0 && this.coal > 0 && this.water > 0 || this.speed == 0) {
+      this.currentTrainIndex = 1;
+      this.trainLoop = setInterval(() => {
+        this.runTrain();
+      }, 1000);
+    }
+  }
+  stopTrainLoop() {
+    this.trainTraveling = false;
+    if (this.miles == 0) {
+      this.incomeChance = 500 + (500 * (this.incomeDist / 1000));
+      this.money += this.incomeChance;
+    }
+    this.currentTrainIndex = 0;
+    clearInterval(this.trainLoop);
+  }
+
+  runTrain() {
+    if (this.coal <= 0 || this.water <= 0) {
+      if (this.coal <= 0) {
+        this.coal = 0;
+        this.speed = 0;
+        this.lockControls = true;
+        localStorage.setItem('coal', this.coal.toString());
+        this.loopTrainEnabled = false;
+        this.stopTrainLoop();
+      }
+      if (this.water <= 0) {
+        this.water = 0;
+        this.speed = 0;
+        this.lockControls = true;
+        localStorage.setItem('water', this.water.toString());
+        this.loopTrainEnabled = false;
+        this.stopTrainLoop();
+      }
+    } else if (this.miles < 15 * this.speed) {
+      this.miles = 0;
+      this.speed = 0;
+      this.milesSet = false;
+      this.lockControls = true;
+      this.loopTrainEnabled = false;
+      this.stopTrainLoop();
+    } else if (this.miles > 0) {
+      this.miles -= 15 * this.speed;
+      this.coal -= 11 * this.speed;
+      this.water -= 9 * this.speed;
+      localStorage.setItem('coal', this.coal.toString());
+      localStorage.setItem('water', this.water.toString());
+      localStorage.setItem('miles', this.miles.toString());
+    } else {
+      this.loopTrainEnabled = false;
+      this.stopTrainLoop();
+    }
+  }
+  get currentTrainImage() {
+    return this.train_images[this.currentTrainIndex];
+  }
+
+  buyTelegraph() {
+    if (this.money >= 7000) {
+      this.ownTelegraph = true;
+      this.money -= 7000;
+      localStorage.setItem('ownTelegraph', this.ownTelegraph.toString());
+    }
+  }
+  buyRadio() {
+    if (this.money >= 15000) {
+      this.ownTeslaTower = true;
+      this.money -= 15000;
+      localStorage.setItem('ownTelegraph', this.ownTelegraph.toString());
+    }
+  }
+
+  hireConductor() {
+    if (this.money > 10) {
+      this.money -= 10;
+      this.hiredConductor = true;
+    }
+  }
+
+  conductorBuyEnabled = false;
+  startBuyingConductorStuff = false;
+  toggleConductorBuying() {
+    this.conductorBuyEnabled = !this.conductorBuyEnabled;
+    this.startBuyingConductorStuff = true;
+    if (this.conductorBuyEnabled) {
+      this.startConductorBuying();
+    } else {
+      this.stopConductorBuying();
+    }
+  }
+  buyConductorStuff: any;
+  startConductorBuying() {
+    this.buyConductorStuff = setInterval(() => {
+      if (this.money > 49.99 || this.money > 19.99) {
+        if (this.coal <= 0) {
+          this.buyCoal();
+        }
+        if (this.water <= 0) {
+          this.buyWater();
+        }
+      }
+    }, 1000);
+
+  }
+  stopConductorBuying() {
+    this.startBuyingConductorStuff = false;
+    clearInterval(this.buyConductorStuff);
+  }
+}

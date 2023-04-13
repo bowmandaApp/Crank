@@ -28,4 +28,12 @@ nav a {
     float: right;
   }
 
+  footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+  }
+
+
+
   

@@ -1,0 +1,36 @@
+.top-container {
+    display: flex;
+    justify-content: left;
+  }
+  
+  img {
+    width: 50%;
+    height: 100px;
+    justify-content: left;
+  }
+
+  nav a {
+    margin-right: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+
+  .scamazon-articles {
+    display: flex;
+  }
+  
+  .article1,
+  .article2 {
+    flex: 1;
+    padding: 20px;
+    border: 2px solid #ccc;
+    background-color: #fff;
+  }
+  h3{
+    text-decoration: underline;
+  }
+
+  .change {
+    border: 2px solid #ccc;
+    padding: 10px;
+  }

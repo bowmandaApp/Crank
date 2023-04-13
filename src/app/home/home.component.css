@@ -2,15 +2,6 @@
     display: flex;
     flex-wrap: wrap;
   }
-  
-  img {
-    width: 150px;
-    height: 150px;
-    margin: 10px;
-    border: 1px solid #ccc;
-    text-align: center;
-  }
-
 
   .print {
     width: 260px;
@@ -22,16 +13,93 @@
     display: flex;
     padding: 0px;
   }
-  
-  .transformer-container,
-  .energy-container,
-  .printer-container,
-  .flywheel-container {
+
+  .logistics-space{
+    flex: 1;
+    padding: 10px;
+    background-color: #aaa;
+    border: 1px solid #ccc;
+  }
+
+  .crank-container{
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    padding: 5px;
+  }
+
+  .tech-space {
+    flex: 1;
+    padding: 10px;
+    background-color: #aaa;
+    border: 1px solid #ccc;
+    display: flex;
+  }
+
+  .logistics-space,
+  .other-space,
+  .train-status {
     text-align: center;
     flex: 1;
     padding: 10px;
     background-color: #aaa;
     border: 1px solid #ccc;
+    max-width: 50%;
+  }
+
+  .train-status{
+    text-align: center;
+  }
+  
+  .transformer-container,
+  .energy-container,
+  .printer-container,
+  .flywheel-container,
+  .communication-container {
+    text-align: center;
+    flex: 1;
+    padding: 10px;
+    background-color: #aaa;
+    border: 1px solid #ccc;
+  }
+
+  .logistics-space {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #scroll{
+    direction:ltr;
+  }
+
+  .logistics-container,
+  .train-controls {
+    flex: 1;
+    border: 1px solid #ccc;
+    display: 50%;
+    display: inline;
+    text-align: center;
+  }
+
+  .scrollbar {
+    float: right;
+    direction: rtl;
+  }
+
+  .train {
+    display: inline;
+    flex: 0;
+    justify-content: flex-end;
+  }
+  .train-container{
+    overflow-x: scroll;   
+    overflow-y: hidden;   
+    white-space: nowrap;
+    width: auto;
+  }
+
+  .slider {
+    display: inline;
   }
 
   .transformer-container{
@@ -120,13 +188,6 @@
   .item{
     background-color: #818181;
     padding: 5px;
-  }
-
-  img {
-    width: 150px;
-    height: 150px;
-    margin: 10px;
-    border: 1px solid #ccc;
   }
 
   .tube-container {
