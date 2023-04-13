@@ -77,9 +77,9 @@
         <article class="communication-container">
         <div class="telegraph" >
             <h5>COMMUNICATIONS</h5>
-            <button [disabled]="money < 7000" *ngIf="!ownTelegraph" (click)="buyTelegraph()" style="display: block;">Buy Telegraph</button>
+            <button [disabled]="money < 7000" *ngIf="!ownTelegraph && showTelegraph" (click)="buyTelegraph()" style="display: block;">Buy Telegraph</button>
             <img src="assets/telegraph.png" *ngIf="ownTelegraph"/>
-            <button [disabled]="money < 15000" *ngIf="!ownTeslaTower" (click)="buyRadio()" style="display: block;">Buy Tesla Tower</button>
+            <button [disabled]="money < 15000" *ngIf="!ownTeslaTower && showTelegraph" (click)="buyRadio()" style="display: block;">Buy Tesla Tower</button>
             <img src="assets/teslatower.png" *ngIf="ownTeslaTower"/>
         </div>
         </article>
@@ -189,7 +189,7 @@
             </div>
         </div>
         <div class="other-space">
-            <div class="computer" *ngIf="!showComputing">
+            <div class="computer" *ngIf="showComputing">
             <app-computing-machine></app-computing-machine>
             </div>
         </div>

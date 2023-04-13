@@ -391,6 +391,9 @@ export class HomeComponent {
     this.hiredConductor = false;
     this.ownTelegraph = false;
     this.ownTeslaTower = false;
+    this.babbageEngines = 0;
+    this.babbages = [];
+    localStorage.removeItem('babbageEngimes');
   }
 
   incrementScore() {
