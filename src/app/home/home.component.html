@@ -76,10 +76,10 @@
         </article>
         <article class="communication-container">
         <div class="telegraph" >
-            <h5>COMMUNICATIONS</h5>
+            <h5 *ngIf="showTelegraph">COMMUNICATIONS</h5>
             <button [disabled]="money < 7000" *ngIf="!ownTelegraph && showTelegraph" (click)="buyTelegraph()" style="display: block;">Buy Telegraph</button>
             <img src="assets/telegraph.png" *ngIf="ownTelegraph"/>
-            <button [disabled]="money < 15000" *ngIf="!ownTeslaTower && showTelegraph" (click)="buyRadio()" style="display: block;">Buy Tesla Tower</button>
+            <button [disabled]="money < 15000" *ngIf="!ownTeslaTower && showTelegraph && score > 4000" (click)="buyRadio()" style="display: block;">Buy Tesla Tower</button>
             <img src="assets/teslatower.png" *ngIf="ownTeslaTower"/>
         </div>
         </article>

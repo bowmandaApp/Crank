@@ -389,6 +389,10 @@ export class HomeComponent {
     this.coal = 0;
     this.miles = 0;
     this.hiredConductor = false;
+    this.showTelegraph = false;
+    localStorage.removeItem('ownTelegraph');
+    localStorage.removeItem('ownTeslaTower');
+    localStorage.removeItem('showTelegraph');
     this.ownTelegraph = false;
     this.ownTeslaTower = false;
     this.babbageEngines = 0;
