@@ -464,10 +464,8 @@ export class HomeComponent {
     this.coils.push('assets/coils.png');
     localStorage.setItem('copperCoils', this.copperCoils.toString());
   }
-  be = 0;
   babbageEngineCalculations() {
-    this.be = this.babbageEngines * 1.5;
-    this.be += this.energy;
+    this.babbageEngines += this.energy;
     this.flywheel -= 15 * this.babbageEngines;
     this.coils.push('assets/babbageengine.png');
     localStorage.setItem('babbageEngines', this.babbageEngines.toString());
@@ -481,6 +479,8 @@ export class HomeComponent {
   energyCount() {
     if (this.copperCoils > 0) {
       this.energy += this.copperCoils * 2;
+    } else if (this.babbageEngines > 0) {
+      this.energy += this.babbageEngines * 1.5;
     } else {
       this.energy++;
     }

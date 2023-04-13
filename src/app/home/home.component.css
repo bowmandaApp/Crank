@@ -158,8 +158,6 @@
     display: 50%;
   }
 
-
-
   .flyimg {
     width: auto;
     height: auto;
@@ -212,12 +210,14 @@
     margin: 10px;
   }
 
-  .coils-container {
+  .coils-container,
+  .engines-container {
     display: flex;
     flex-wrap: wrap;
 
   }
-  .coils-display {
+  .coils-display,
+  .engines-display {
     width: 50px;
     height: 50px;
     margin: 10px;
