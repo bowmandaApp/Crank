@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataService } from '../shared.service';
 
 @Component({
   selector: 'app-computing-machine',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./computing-machine.component.css']
 })
 export class ComputingMachineComponent {
+
 
 }

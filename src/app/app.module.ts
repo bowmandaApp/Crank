@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { ComputingMachineComponent } from './computing-machine/computing-machine.component';
 import { InformationComponent } from './information/information.component';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
