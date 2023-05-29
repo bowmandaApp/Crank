@@ -1,23 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../shared.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-
 export class HomeComponent {
-
-
 
   title(title: any) {
     throw new Error('Method not implemented.');
   }
-
-  study = 0;
-  pagesLeft = 0;
-  finishedBook: boolean = false;
   score = 0;
   clicks = 0;
   energy = 0;
@@ -67,19 +59,7 @@ export class HomeComponent {
   ownTeslaTower = false;
   showComputing = false;
   hiredConductor = false;
-  probability = 0;
-  percentage = 0;
-  scrap = 0;
-  partSuccess = false;
-  unknownParts = 0;
-  int = 0;
-  buyConductorStuff: any;
-  conductorBuyEnabled = false;
-  startBuyingConductorStuff = false;
-  unknownDevice = 0;
-  ownTypewriter = false;
-  madeKeyboard = false;
-  ownMouse = false;
+
 
   crank_images = [
     'assets/crank.png',
@@ -135,7 +115,6 @@ export class HomeComponent {
   }
 
   ngOnInit() {
-
 
     const score = localStorage.getItem('score');
     if (score !== null) {
@@ -324,56 +303,6 @@ export class HomeComponent {
       this.showLogistics = JSON.parse(showLogistics);
     }
 
-    const ownBooks = localStorage.getItem('ownBooks');
-    if (ownBooks !== null) {
-      this.ownBooks = JSON.parse(ownBooks);
-    }
-
-    const study = localStorage.getItem('study');
-    if (study !== null) {
-      this.study = parseInt(study, 10);
-    }
-
-    const pagesLeft = localStorage.getItem('pagesLeft');
-    if (pagesLeft !== null) {
-      this.pagesLeft = parseInt(pagesLeft, 10);
-    }
-
-    const unknownParts = localStorage.getItem('unknownParts');
-    if (unknownParts !== null) {
-      this.unknownParts = parseInt(unknownParts, 10);
-    }
-
-    const unknownDevice = localStorage.getItem('unknownDevice');
-    if (unknownDevice !== null) {
-      this.unknownDevice = JSON.parse(unknownDevice);
-    }
-
-    const int = localStorage.getItem('int');
-    if (int !== null) {
-      this.int = parseInt(int, 10);
-    }
-
-    const percentage = localStorage.getItem('percentage');
-    if (percentage !== null) {
-      this.percentage = parseInt(percentage, 10);
-    }
-
-    const ownTypewriter = localStorage.getItem('ownTypewriter');
-    if (ownTypewriter !== null) {
-      this.ownTypewriter = JSON.parse(ownTypewriter);
-    }
-
-    const madeKeyboard = localStorage.getItem('madeKeyboard');
-    if (madeKeyboard !== null) {
-      this.madeKeyboard = JSON.parse(madeKeyboard);
-    }
-    
-    const ownMouse = localStorage.getItem('ownMouse');
-    if (ownMouse !== null) {
-      this.ownMouse = JSON.parse(ownMouse);
-    }
-
     setInterval(() => {
 
       for (let i = 0; i < this.tubes; i++) {
@@ -394,12 +323,8 @@ export class HomeComponent {
       localStorage.setItem('energy', this.energy.toString());
       localStorage.setItem('money', this.money.toString());
     }, 1000);
-  }
-  moneyVal: string = "";
 
-  updateMoney(moneyVal: string) {
-    this.moneyVal = this.money.toString();
-    localStorage.setItem('money', moneyVal);
+
   }
 
   incrementClicks() {
@@ -472,19 +397,7 @@ export class HomeComponent {
     this.ownTeslaTower = false;
     this.babbageEngines = 0;
     this.babbages = [];
-    localStorage.removeItem('babbageEngines');
-    localStorage.removeItem('ownTypewriter');
-    localStorage.removeItem('madeKeyboard');
-    this.ownTypewriter = false;
-    this.madeKeyboard = false;
-    this.int = 0;
-    localStorage.removeItem('int');
-    this.unknownParts = 0;
-    localStorage.removeItem('unknownParts');
-    this.unknownDevice = 0;
-    localStorage.removeItem('unknownDevice');
-
-    localStorage.clear();
+    localStorage.removeItem('babbageEngimes');
   }
 
   incrementScore() {
@@ -526,7 +439,7 @@ export class HomeComponent {
       this.showTeslaTower = true;
     }
 
-    if (this.score >= 6000 && this.showTeslaTower) {
+    if (this.score >= 8000 && this.showTeslaTower) {
       this.showComputing = true;
     }
 
@@ -846,7 +759,7 @@ export class HomeComponent {
       this.energy -= 100 * this.transformerUpgrade;
       this.money -= 25 * this.transformerUpgrade;
       this.transformerUpgrade++;
-      localStorage.setItem('transformerUpgrade', this.transformerUpgrade.toString());
+      localStorage.setItem('PrinterUpgrade', this.transformerUpgrade.toString());
     }
   }
   runTransformer() {
@@ -977,16 +890,16 @@ export class HomeComponent {
   }
 
   buyTelegraph() {
-    if (this.money >= 700) {
+    if (this.money >= 7000) {
       this.ownTelegraph = true;
-      this.money -= 700;
+      this.money -= 7000;
       localStorage.setItem('ownTelegraph', this.ownTelegraph.toString());
     }
   }
   buyRadio() {
-    if (this.money >= 1500) {
+    if (this.money >= 15000) {
       this.ownTeslaTower = true;
-      this.money -= 1500;
+      this.money -= 15000;
       localStorage.setItem('ownTelegraph', this.ownTelegraph.toString());
     }
   }
@@ -998,6 +911,8 @@ export class HomeComponent {
     }
   }
 
+  conductorBuyEnabled = false;
+  startBuyingConductorStuff = false;
   toggleConductorBuying() {
     this.conductorBuyEnabled = !this.conductorBuyEnabled;
     this.startBuyingConductorStuff = true;
@@ -1007,7 +922,7 @@ export class HomeComponent {
       this.stopConductorBuying();
     }
   }
-  
+  buyConductorStuff: any;
   startConductorBuying() {
     this.buyConductorStuff = setInterval(() => {
       if (this.money > 49.99 || this.money > 19.99) {
@@ -1024,100 +939,5 @@ export class HomeComponent {
   stopConductorBuying() {
     this.startBuyingConductorStuff = false;
     clearInterval(this.buyConductorStuff);
-  }
-
-  ownBooks = false
-  buyBook() {
-    this.money -= 15;
-    this.ownBooks = true;
-    localStorage.setItem('ownBooks', this.ownBooks.toString());
-  }
-
-  pmin = 5;
-  pmax = 500;
-  randomBookLength = Math.floor(Math.random() * (this.pmax - this.pmin + 1)) + this.min;
-
-  buyNewBook() {
-    this.pagesLeft = this.randomBookLength;
-    this.money -= 10;
-
-    localStorage.setItem('money', this.money.toString());
-  }
-
-  studyTime() {
-    if (this.pagesLeft > 0) {
-      this.study++;
-      this.pagesLeft--;
-    }
-    localStorage.setItem('study', this.study.toString());
-    localStorage.setItem('pagesLeft', this.pagesLeft.toString());
-  }
-
-
-  rest() {
-    if (this.study > 99) {
-      this.study -= 100;
-      this.int++;
-    }
-    localStorage.setItem('int', this.int.toString());
-    this.probability = this.int / 150;
-    this.percentage = (this.probability * 100);
-    localStorage.setItem('percentage', this.percentage.toString());
-  }
-
-
-  buyParts(type: number) {
-    if (type == 1) {
-      if (this.money > 100) {
-        this.money -= 100;
-        this.scrap++;
-        localStorage.setItem('scrap', this.scrap.toString());
-      }
-    } else if (type == 2) {
-      if(this.money > 1999){
-          this.money -= 2000;
-          this.ownTypewriter = true;
-          localStorage.setItem('ownTypewriter', this.ownTypewriter.toString());
-      }
-    } else if (type == 3) {
-      if(this.money > 4){
-      this.money -= 5;
-      this.ownMouse = true;
-      }
-      localStorage.setItem('ownMouse', this.ownMouse.toString());
-    }
-  }
-
-
-  makeThing(type: number) {
-    if(type == 1) {
-    this.percentage = (this.probability * 100);
-    const randomNumber = Math.random();
-      if(this.probability > 100){
-        this.probability = 100;
-      }
-    if (randomNumber < this.probability) {
-      this.partSuccess = true;
-      this.unknownParts++;
-    } else {
-      this.partSuccess = false;
-    }
-    
-    this.scrap--;
-    localStorage.setItem('unknownParts', this.unknownParts.toString());
-  } else if (type == 2) {
-    if(this.scrap > 9){
-    this.madeKeyboard = true;
-    }
-  }
-  }
-
-  useParts() {
-    if(this.unknownParts > 0){
-    this.unknownParts--;
-    this.unknownDevice++;
-    localStorage.setItem('unknownParts', this.unknownParts.toString());
-    localStorage.setItem('unknownDevice', this.unknownParts.toString());
-  }
   }
 }
